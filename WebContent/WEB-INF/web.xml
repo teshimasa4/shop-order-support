@@ -5,11 +5,14 @@
 
 	<display-name>shop-order-suport</display-name>
 
-	<!-- The master configuration file for this Spring web application -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/applicationContent.xml</param-value>
+		<param-value>/WEB-INF/spring/applicationContent.xml /WEB-INF/spring/applicationContext-security.xml</param-value>
 	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 
 	<filter>
 		<filter-name>characterEncodingFilter</filter-name>
@@ -28,7 +31,6 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-<!--
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -37,11 +39,6 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
- -->
-
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
 
 	<servlet>
 		<servlet-name>dispatcherServlet</servlet-name>
