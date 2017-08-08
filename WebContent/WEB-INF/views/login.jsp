@@ -5,6 +5,21 @@
 <meta charset="utf-8">
 </head>
 <body>
-	Login
+	<form name='f' action='/shop-order-support/login' method='POST'>
+		<table>
+			<tr>
+				<td>ユーザ:</td>
+				<td><input type='text' name='username' value=''></td>
+			</tr>
+			<tr>
+				<td>パスワード:</td>
+				<td><input type='password' name='password' /></td>
+			</tr>
+			<tr>
+				<td colspan='2'><input name="submit" type="submit" value="Login" /></td>
+			</tr>
+		</table>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	</form>
 </body>
 </html>
