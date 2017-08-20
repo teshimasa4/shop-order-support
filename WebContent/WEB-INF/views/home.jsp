@@ -5,6 +5,8 @@
     <meta charset="utf-8">
   </head>
   <body>
-    Security!!${welcomeMesssage}
+    Security!!
+    <br />
+    ${welcomeMesssage}${userName}
   </body>
 </html>

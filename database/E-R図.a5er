@@ -1,0 +1,105 @@
+﻿# A5:ER FORMAT:11
+# A5:ER ENCODING:UTF8
+# A5:ER Mk-1 Copyright (C)2007 m.matsubara
+# A5:SQL Mk-2 Copyright (C)1997 m.matsubara
+#  http://www.wind.sannet.ne.jp/m_matsu/developer/a5m2/
+
+[Manager]
+ProjectName=shop-order-support
+Author=
+MaxEntityRowShow=1000
+ReadOnlyRecommend=0
+Page=Main
+PageInfo="Main",2,"A3Landscape",$FFFFFF
+Domain=ユーザCD=@CHAR(5)
+Domain=店舗CD=@CHAR(3)
+Domain=パスワード=@VARCHAR(100)
+Domain=名前=@VARCHAR(50)
+LogicalView=1
+DecodeDomain=0
+ViewModePageIndividually=1
+ViewMode=2
+ViewFormat=0
+UseNondependenceDashLine=0
+FontName=Tahoma
+FontSize=6
+PaperSize=A4Landscape
+HeaderLeft=
+HeaderCenter=
+HeaderRight=
+FooterLeft=
+FooterCenter=
+FooterRight=
+ShowPageoutRelation=1
+RDBMSType=6
+RDBMSTypeName=PostgreSQL
+GenerateDropTableStatement=1
+DropTableIfExists=0
+CreatePkIndex=1
+CommonField="バージョンNo","VERSION_NO","@INT","NOT NULL",,"1","",$FFFFFFFF
+CommonField="登録ユーザCD","CREATE_USER_CD","*ユーザCD","NOT NULL",,"","",$FFFFFFFF
+CommonField="登録日時","CREATE_TIME","@DATETIME","NOT NULL",,"","",$FFFFFFFF
+CommonField="更新ユーザCD","UPDATE_USER_CD","*ユーザCD","NOT NULL",,"","",$FFFFFFFF
+CommonField="更新日時","UPDATE_TIME","@DATETIME","NOT NULL",,"","",$FFFFFFFF
+DefaultPkName=%0:s_PKC
+DefaultPkIndexName=%0:s_PKI
+DefaultIndexName=%0:s_IX%1:d
+DefaultFkName=%0:s_FK%1:d
+SqlSeparator=0
+ShowTag=1
+ShowCommonAttributes=0
+
+[Relation]
+Entity1=M_SHOP
+Entity2=M_USER
+RelationType1=2
+RelationType2=3
+Fields1=SHOP_CD
+Fields2=SHOP_CD
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,943,9057,7361,R,R
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20170813093106
+LineMode=0
+Bar1=94
+Bar2=906
+Bar3=736
+TermPos1=R
+TermPos2=R
+
+[Entity]
+PName=M_SHOP
+LName=店舗
+Comment=
+TableOption=
+Page=Main
+Left=850
+Top=250
+Field="店舗CD","SHOP_CD","*店舗CD","NOT NULL",0,"","",$FFFFFFFF,""
+Field="名前","NAME","*名前",,,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20170813093651
+Position="Main",850,250
+
+[Entity]
+PName=M_USER
+LName=ユーザ
+Comment=
+TableOption=
+Page=Main
+Left=250
+Top=200
+Field="ユーザCD","USER_CD","*ユーザCD","NOT NULL",0,"","",$FFFFFFFF,""
+Field="パスワード","PASSWORD","*パスワード","NOT NULL",,"","",$FFFFFFFF,""
+Field="名前","NAME","*名前","NOT NULL",,"","",$FFFFFFFF,""
+Field="店舗CD","SHOP_CD","*店舗CD","NOT NULL",,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20170813093631
+Position="Main",250,200
