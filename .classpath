@@ -32,5 +32,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="J:/eclipse/eclipse4.7/lombok.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
