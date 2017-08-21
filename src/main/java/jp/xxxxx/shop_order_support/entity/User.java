@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class User extends Base {
-	private String userCd;
+	private String code;
 	private String password;
 	private String name;
 	private String shopCd;

@@ -8,14 +8,15 @@
 
 	<display-name>shop-order-suport</display-name>
 
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/root-context.xml</param-value>
-	</context-param>
-
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/META-INF/spring/root-context.xml</param-value>
+	</context-param>
+
 
 	<filter>
 		<filter-name>characterEncodingFilter</filter-name>
