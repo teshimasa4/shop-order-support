@@ -12,7 +12,7 @@ public class UserDetails extends org.springframework.security.core.userdetails.U
 	private User user;
 
 	public UserDetails(User user, Collection<? extends GrantedAuthority> authorities) {
-		super(user.getName(), user.getPassword(), true, true, true, true, authorities);
+		super(user.getCode(), user.getPassword(), true, true, true, true, authorities);
 	}
 
 	public User getUser() {
