@@ -26,6 +26,6 @@ public class HomeController {
 
 		model.addAttribute("welcomeMesssage", "Hello!!");
 		model.addAttribute("userName", userList.get(0).getName());
-		return "home";
+		return "home/home";
 	}
 }
