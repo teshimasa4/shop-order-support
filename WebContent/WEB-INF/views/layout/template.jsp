@@ -39,6 +39,7 @@
 		<div role="main" class="ui-content">
 			<tiles:insertAttribute name="body" />
 		</div>
+
 		<div data-role="footer">
 			<tiles:insertAttribute name="footer" />
 		</div>

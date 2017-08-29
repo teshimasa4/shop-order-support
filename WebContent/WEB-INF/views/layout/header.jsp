@@ -9,7 +9,6 @@
 	<li><a href="">CONTACT</a></li>
 </ul>
 
-
 <script>
 	$(function() {
 		$('#navigation').slimmenu(
