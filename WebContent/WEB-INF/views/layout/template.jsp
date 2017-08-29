@@ -5,12 +5,14 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link href="<c:url value="/resources/bootstrap/css/bootstrap-responsive.min.css" />" rel="stylesheet">
-	<link href="<c:url value="/resources/jquery/css/jquery-ui-1.12.1.min.css" />" rel="stylesheet">
-	<link href="<c:url value="/resources/app/css/common.css" />" rel="stylesheet">
+	<!-- bootstrap -->
+	<link href="<c:url value="/resources/bootstrap/css/bootstrap-3.3.7.min.css" />" rel="stylesheet">
 
+	<!-- jquery -->
 	<script src="<c:url value="/resources/jquery/js/jquery-3.2.1.min.js" />"></script>
-	<script src="<c:url value="/resources/jquery/js/jquery-ui-1.12.1.min.js" />"></script>
+
+	<!-- app -->
+	<link href="<c:url value="/resources/app/css/common.css" />" rel="stylesheet">
 	<script src="<c:url value="/resources/app/js/common.js" />"></script>
 
 	<c:set var="titleKey">
@@ -21,14 +23,16 @@
 
 </head>
 <body>
-	<div id="header">
-		<tiles:insertAttribute name="header" />
-	</div>
-	<div id="body">
-		<tiles:insertAttribute name="body" />
-	</div>
-	<div id="footer">
-		<tiles:insertAttribute name="footer" />
+	<div data-role="page">
+		<div data-role="header">
+			<tiles:insertAttribute name="header" />
+		</div>
+		<div role="main" class="ui-content">
+			<tiles:insertAttribute name="body" />
+		</div>
+		<div data-role="footer">
+			<tiles:insertAttribute name="footer" />
+		</div>
 	</div>
 </body>
 </html>

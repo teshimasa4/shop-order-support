@@ -11,4 +11,7 @@ public class User extends Base {
 	private String password;
 	private String name;
 	private String shopCd;
+	private Boolean enabled;
+
+	private String shopName;
 }

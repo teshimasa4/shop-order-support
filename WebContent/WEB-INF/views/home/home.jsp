@@ -1,3 +1,3 @@
 Security!!
 <br />
-${welcomeMesssage}${userName}
+${welcomeMesssage}<sec:authentication property="principal.user.name"/>
