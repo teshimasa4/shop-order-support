@@ -41,7 +41,7 @@
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
 
-	<mybatis:scan base-package="jp.xxxxx.shop_order_support.mapper" />
+	<mybatis:scan base-package="jp.xxxxx.shop_order_support.repository" />
 
 	<tx:annotation-driven />
 </beans>

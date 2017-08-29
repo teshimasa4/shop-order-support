@@ -17,18 +17,26 @@
 	<aop:aspectj-autoproxy />
 	<mvc:annotation-driven />
 
-	<context:component-scan base-package="jp.xxxxx.shop_order_support.common" use-default-filters="false" scoped-proxy="targetClass">
+	<!-- common -->
+	<!-- aspect -->
+	<context:component-scan base-package="jp.xxxxx.shop_order_support.common.aspect" use-default-filters="false" scoped-proxy="targetClass">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
 	</context:component-scan>
 
+	<!-- security -->
+	<context:component-scan base-package="jp.xxxxx.shop_order_support.common.security.service" use-default-filters="false" scoped-proxy="targetClass">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+	</context:component-scan>
+
+	<!-- controller -->
 	<context:component-scan base-package="jp.xxxxx.shop_order_support.controller" use-default-filters="false" scoped-proxy="targetClass">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 
+	<!-- service -->
 	<context:component-scan base-package="jp.xxxxx.shop_order_support.service" use-default-filters="false" scoped-proxy="targetClass">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
 	</context:component-scan>
-
 
 	<mvc:view-resolvers>
 		<mvc:tiles />

@@ -1,4 +1,4 @@
-package jp.xxxxx.shop_order_support.entity;
+package jp.xxxxx.shop_order_support.common.security.data;
 
 import java.util.Collection;
 
