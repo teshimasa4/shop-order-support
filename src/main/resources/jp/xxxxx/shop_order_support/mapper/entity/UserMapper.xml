@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="jp.xxxxx.shop_order_support.repository.entity.UserRepository">
+<mapper namespace="jp.xxxxx.shop_order_support.mapper.entity.UserMapper">
 
 	<resultMap id="userResult" type="jp.xxxxx.shop_order_support.entity.User">
 		<id column="code" property="code" />

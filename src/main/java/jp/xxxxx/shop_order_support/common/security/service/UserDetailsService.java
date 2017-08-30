@@ -11,19 +11,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 import jp.xxxxx.shop_order_support.common.security.data.UserDetails;
 import jp.xxxxx.shop_order_support.entity.User;
-import jp.xxxxx.shop_order_support.repository.entity.UserRepository;
+import jp.xxxxx.shop_order_support.mapper.entity.UserMapper;
 
 @Service
 @Transactional
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
 
 	@Autowired
-    private UserRepository userRepository;
+    private UserMapper userMapper;
 
 	@Override
 	public UserDetails loadUserByUsername(String code) throws UsernameNotFoundException {
 
-		User user = userRepository.findOne(code);
+		User user = userMapper.findOne(code);
 		if(user == null) {
 			throw new UsernameNotFoundException(code);
 		}
