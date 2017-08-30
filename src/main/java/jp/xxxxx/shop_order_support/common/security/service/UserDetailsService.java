@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import jp.xxxxx.shop_order_support.common.security.data.UserDetails;
 import jp.xxxxx.shop_order_support.entity.User;
-import jp.xxxxx.shop_order_support.repository.UserRepository;
+import jp.xxxxx.shop_order_support.repository.entity.UserRepository;
 
 @Service
 @Transactional

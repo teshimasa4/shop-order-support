@@ -1,4 +1,4 @@
-package jp.xxxxx.shop_order_support.repository;
+package jp.xxxxx.shop_order_support.repository.entity;
 
 import org.apache.ibatis.annotations.Param;
 

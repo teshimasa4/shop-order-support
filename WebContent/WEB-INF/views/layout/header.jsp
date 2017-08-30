@@ -8,14 +8,3 @@
 	<li><a href="">ABOUT</a></li>
 	<li><a href="">CONTACT</a></li>
 </ul>
-
-<script>
-	$(function() {
-		$('#navigation').slimmenu(
-			{
-			    resizeWidth: '767',
-			    collapserTitle: 'Menu'
-			}
-		);
-	});
-</script>
