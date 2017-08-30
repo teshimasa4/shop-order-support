@@ -16,8 +16,8 @@
 	<script src="<c:url value="/resources/jquery/js/jquery.slimmenu.min.js" />"></script>
 
 	<!-- app -->
-	<link href="<c:url value="/resources/app/css/common.css" />" rel="stylesheet">
-	<script src="<c:url value="/resources/app/js/common.js" />"></script>
+	<link href="<c:url value="/resources/app/css/common/common.css" />" rel="stylesheet">
+	<script src="<c:url value="/resources/app/js/common/common.js" />"></script>
 
 	<c:set var="titleKey">
 		<tiles:insertAttribute name="title" ignore="true" />
@@ -30,11 +30,8 @@
 	<div data-role="page">
 		<div data-role="header">
 			<tiles:insertAttribute name="header" />
+			<h3><spring:message code="${titleKey}" /></h3>
 		</div>
-
-		<h3>
-			<spring:message code="${titleKey}" />
-		</h3>
 
 		<div role="main" class="ui-content">
 			<tiles:insertAttribute name="body" />
