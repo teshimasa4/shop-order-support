@@ -48,7 +48,8 @@
     	<mvc:definitions location="/WEB-INF/tiles/tiles-definitions.xml" />
 	</mvc:tiles-configurer>
 
-	<mvc:resources location="/resources/" mapping="/resources/**" />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/service-worker.js" location="/service-worker.js" />
 
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 	    <property name="basenames">
