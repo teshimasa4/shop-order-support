@@ -8,18 +8,21 @@
          http://www.springframework.org/schema/security
          http://www.springframework.org/schema/security/spring-security.xsd">
 
-	<sec:http>
+	<sec:http auto-config="true" use-expressions="true">
 		<sec:intercept-url pattern="/login" access="permitAll" />
 		<sec:intercept-url pattern="/logout" access="permitAll" />
 		<sec:intercept-url pattern="/resources/**" access="permitAll" />
 		<sec:intercept-url pattern="/**" access="isAuthenticated()" />
+
 		<sec:form-login login-page='/login' default-target-url='/' />
-		<sec:logout />
+
+		<sec:logout logout-success-url="/login"/>
+		<sec:remember-me />
 	</sec:http>
 
 	<sec:authentication-manager>
 		<sec:authentication-provider user-service-ref="userDetailsService">
-        <sec:password-encoder ref="passwordEncoder" />
+        	<sec:password-encoder ref="passwordEncoder" />
     	</sec:authentication-provider>
 	</sec:authentication-manager>
 

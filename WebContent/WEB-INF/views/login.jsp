@@ -17,7 +17,8 @@
 				<td><input type='password' name='password' /></td>
 			</tr>
 			<tr>
-				<td colspan='2'><input name="submit" type="submit" value="Login" /></td>
+				<td><input name="submit" type="submit" value="Login" /></td>
+				<td><input name="remember-me" id="remember-me" type="checkbox" checked="checked" value="true" /></td>
 			</tr>
 		</table>
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

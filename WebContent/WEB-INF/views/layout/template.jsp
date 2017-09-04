@@ -6,18 +6,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- bootstrap -->
-	<link href="<c:url value="/resources/bootstrap/css/bootstrap-3.3.7.min.css" />" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap-3.3.7.min.css" rel="stylesheet">
 
 	<!-- jquery -->
-	<script src="<c:url value="/resources/jquery/js/jquery-3.2.1.min.js" />"></script>
+	<script src="${pageContext.request.contextPath}/resources/jquery/js/jquery-3.2.1.min.js"></script>
 
 	<!-- slimMenu -->
-	<link href="<c:url value="/resources/jquery/css/slimmenu.min.css" />" rel="stylesheet">
-	<script src="<c:url value="/resources/jquery/js/jquery.slimmenu.min.js" />"></script>
+	<link href="${pageContext.request.contextPath}/resources/jquery/css/slimmenu.min.css" rel="stylesheet">
+	<script src="${pageContext.request.contextPath}/resources/jquery/js/jquery.slimmenu.min.js"></script>
 
 	<!-- app -->
-	<link href="<c:url value="/resources/app/css/common/common.css" />" rel="stylesheet">
-	<script src="<c:url value="/resources/app/js/common/common.js" />"></script>
+	<link href="${pageContext.request.contextPath}/resources/app/css/common/common.css" rel="stylesheet">
+	<script src="${pageContext.request.contextPath}/resources/app/js/common/common.js"></script>
 
 	<c:set var="titleKey">
 		<tiles:insertAttribute name="title" ignore="true" />
