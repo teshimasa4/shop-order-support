@@ -9,8 +9,8 @@
 	<li><a href="">SAMPLE</a></li>
 	<li><a href="">ABOUT</a></li>
 	<li>
-		<form:form action="${pageContext.request.contextPath}/logout" method="post" name="logout">
-			<a href="javascript:logout.submit()">logout</a>
+		<form:form action="${pageContext.request.contextPath}/logout" method="post" id="logout">
+			<a href="javascript:logout()">logout</a>
 		</form:form>
 	</li>
 </ul>

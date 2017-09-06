@@ -9,3 +9,14 @@ $(function() {
 	);
 });
 
+function logout() {
+
+	navigator.serviceWorker.getRegistrations()
+		.then(function(registrations) {
+			for(let registration of registrations) {
+				registration.unregister()
+			}
+		});
+
+	$('#logout').submit();
+}

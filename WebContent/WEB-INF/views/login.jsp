@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-	<form name='f' action='/shop-order-support/login' method='POST'>
+	<form name='f' action='${pageContext.request.contextPath}/login' method='POST'>
 		<table>
 			<tr>
 				<td>ユーザ:</td>

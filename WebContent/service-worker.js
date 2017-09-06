@@ -1,3 +1,5 @@
+'use strict';
+
 var cacheName = 'shop-order-support_0.0.1';
 var dataCacheName = 'shop-order-support_data_0.0.1';
 var filesToCache = [
@@ -17,18 +19,19 @@ var filesToCache = [
 ];
 
 self.addEventListener('install', function(e) {
-	console.log('[ServiceWorker] Install');
-		e.waitUntil(
-				caches.open(cacheName).then(function(cache) {
-					console.log('[ServiceWorker] Caching app shell');
-					return cache.addAll(filesToCache);
-				})
-		);
-	}
-);
+	console.log('[Service Worker] Install');
+	caches.delete(cacheName);
+
+	e.waitUntil(
+			caches.open(cacheName).then(function(cache) {
+				console.log('[Service Worker] Caching app shell');
+				return cache.addAll(filesToCache);
+			})
+	);
+});
 
 self.addEventListener('activate', function(e) {
-	console.log('[ServiceWorker] Activate');
+	console.log('[Service Worker] Activate');
 	e.waitUntil(
 			caches.keys().then(function(keyList) {
 				return Promise.all(keyList.map(function(key) {
@@ -39,7 +42,7 @@ self.addEventListener('activate', function(e) {
 				}));
 			})
 	);
-  return self.clients.claim();
+	return self.clients.claim();
 });
 
 self.addEventListener('fetch', function(e) {
@@ -47,6 +50,7 @@ self.addEventListener('fetch', function(e) {
 
 	e.respondWith(
 			caches.match(e.request).then(function(response) {
+
 				if (response) {
 					return response;
 		        }
@@ -65,6 +69,7 @@ self.addEventListener('fetch', function(e) {
 
 					return response;
 				});
+
 			})
 	);
 });
