@@ -34,7 +34,6 @@
 	</context:component-scan>
 
 
-
 	<!-- controller -->
 	<context:component-scan base-package="jp.xxxxx.shop_order_support.controller" use-default-filters="false" scoped-proxy="targetClass">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>

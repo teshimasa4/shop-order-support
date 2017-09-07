@@ -46,5 +46,6 @@ public class ItemData implements Serializable {
 	private Integer leadTime;
 
 	@JsonProperty("last_update_time")
+//	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:sss")
 	private Timestamp lastUpdateTime;
 }
