@@ -1,14 +1,14 @@
 $(function() {
 	'use strict';
 
-	var app = {};
+	var app = { };
 
 	$('#item_cd').blur(function(event) {
 
 		var item_cd = $('#item_cd').val();
 
 		if(item_cd) {
-			var url = 'http://localhost:8080/shop-order-support/api/item?shop_cd=' + $('#shop_cd').val() + '&item_cd=' + item_cd;
+			var url = '/shop-order-support/api/item?shop_cd=' + $('#shop_cd').val() + '&item_cd=' + item_cd;
 
 			if ('caches' in window) {
 				caches.match(url).then(function(response) {
