@@ -18,6 +18,7 @@
 	<!-- app -->
 	<link href="${pageContext.request.contextPath}/resources/app/css/common/common.css" rel="stylesheet">
 	<script src="${pageContext.request.contextPath}/resources/app/js/common/common.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/app/js/common/service-worker-registration.js" async></script>
 
 	<c:set var="titleKey">
 		<tiles:insertAttribute name="title" ignore="true" />
