@@ -10,7 +10,7 @@
 		<table>
 			<tr>
 				<td>ユーザ:</td>
-				<td><input type='text' name='username' value=''></td>
+				<td><input type='text' name='username' value='' /></td>
 			</tr>
 			<tr>
 				<td>パスワード:</td>

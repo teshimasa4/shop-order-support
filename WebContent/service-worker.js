@@ -10,18 +10,19 @@ var filesToCache = [
 	, '/shop-order-support/resources/jquery/css/slimmenu.min.css'
 	, '/shop-order-support/resources/jquery/js/jquery.slimmenu.min.js'
 
+
 	, '/shop-order-support/resources/app/css/common/common.css'
-
 	, '/shop-order-support/resources/app/js/common/common.js'
-	, '/shop-order-support/resources/app/js/common/header.js'
 
-	, '/shop-order-support/resources/app/js/common/service-worker-registration.js'
+	, '/shop-order-support/resources/app/js/layout/header.js'
+
+	, '/shop-order-support/resources/app/js/home/service-worker-registration.js'
+	, '/shop-order-support/resources/app/js/order/home.js'
+
 ];
 
 self.addEventListener('install', function(e) {
 	console.log('[Service Worker] Install');
-	caches.delete(cacheName);
-
 	e.waitUntil(
 			caches.open(cacheName).then(function(cache) {
 				console.log('[Service Worker] Caching app shell');
@@ -48,28 +49,48 @@ self.addEventListener('activate', function(e) {
 self.addEventListener('fetch', function(e) {
 	console.log('[Service Worker] Fetch', e.request.url);
 
-	e.respondWith(
-			caches.match(e.request).then(function(response) {
-
-				if (response) {
-					return response;
-		        }
-
-				var fetchRequest = e.request.clone();
-				return fetch(fetchRequest).then(function(response) {
-
-					if (!response || response.status !== 200 || response.type !== 'basic') {
+	if (e.request.url.indexOf('/login') > -1) {
+		return fetch(e.request);
+	} else if (e.request.url.indexOf('/logout') > -1) {
+		caches.delete(cacheName);
+		return fetch(e.request);
+	} else 	if (e.request.url.indexOf('/api/') > -1) {
+		e.respondWith(
+				caches.open(dataCacheName).then(function(cache) {
+					return fetch(e.request).then(function(response) {
+						cache.put(e.request.url, response.clone());
 						return response;
+						});
 					}
+				)
+		);
+	} else {
+		e.respondWith(
+				caches.match(e.request).then(function(response) {
 
-					var responseToCache = response.clone();
-					caches.open(cacheName).then(function(cache) {
-						cache.put(e.request, responseToCache);
+					if (response) {
+						console.log('[Service Worker] from cache');
+						return response;
+			        }
+
+					var fetchRequest = e.request.clone();
+					return fetch(fetchRequest).then(function(response) {
+
+						if (!response || response.status !== 200 || response.type !== 'basic') {
+							console.log('[Service Worker] NG response');
+							return response;
+						}
+
+						var responseToCache = response.clone();
+						caches.open(cacheName).then(function(cache) {
+							cache.put(e.request.url, responseToCache);
+						});
+
+						console.log('[Service Worker] from fetch');
+						return response;
 					});
 
-					return response;
-				});
-
-			})
-	);
+				})
+		);
+	}
 });

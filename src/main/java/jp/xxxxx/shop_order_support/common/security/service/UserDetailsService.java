@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import jp.xxxxx.shop_order_support.common.security.data.UserDetails;
-import jp.xxxxx.shop_order_support.entity.User;
+import jp.xxxxx.shop_order_support.entity.UserEntity;
 import jp.xxxxx.shop_order_support.mapper.entity.UserMapper;
 
 @Service
@@ -23,7 +23,7 @@ public class UserDetailsService implements org.springframework.security.core.use
 	@Override
 	public UserDetails loadUserByUsername(String code) throws UsernameNotFoundException {
 
-		User user = userMapper.findOne(code);
+		UserEntity user = userMapper.findOne(code);
 		if(user == null) {
 			throw new UsernameNotFoundException(code);
 		}

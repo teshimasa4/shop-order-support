@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jp.xxxxx.shop_order_support.mapper.common.ApiMapper">
+
+	<resultMap id="itemResult" type="jp.xxxxx.shop_order_support.data.common.ItemData">
+		<result column="shop_cd" property="shopCd" />
+		<result column="item_cd" property="itemCd" />
+		<result column="item_name" property="itemName" />
+		<result column="item_category_cd" property="itemCategoryCd" />
+		<result column="item_category_name" property="itemCategoryName" />
+		<result column="date_specification" property="dateSpecification" />
+		<result column="min_order_quantity" property="minOrderQuantity" />
+		<result column="unit_selling_price" property="unitSellingPrice" />
+		<result column="unit_cost" property="unitCost" />
+		<result column="lead_time" property="leadTime" />
+		<result column="last_update_time" property="lastUpdateTime" />
+	</resultMap>
+
+	<select id="findOneItem" resultMap="itemResult">
+		select si.shop_cd
+			, i.code as item_cd
+			, i.name as item_name
+			, i.item_category_cd
+			, ic.name as item_category_name
+			, ic.date_specification
+			, i.min_order_quantity
+			, i.unit_selling_price
+			, i.unit_cost
+			, i.lead_time
+
+			, case when i.update_time >= ic.update_time then i.update_time else ic.update_time end as last_update_time
+		from m_shop_item si
+		inner join m_item i
+		on si.item_cd = i.code
+		inner join m_item_category ic
+		on i.item_category_cd = ic.code
+		where i.enabled = true
+		and si.shop_cd = #{shop_code}
+		and si.item_cd = #{item_code}
+	</select>
+</mapper>

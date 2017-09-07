@@ -1,4 +1,4 @@
-<script src="${pageContext.request.contextPath}/resources/app/js/common/service-worker-registration.js" async></script>
+<script src="${pageContext.request.contextPath}/resources/app/js/home/service-worker-registration.js" async></script>
 
 Security!!
 <br />

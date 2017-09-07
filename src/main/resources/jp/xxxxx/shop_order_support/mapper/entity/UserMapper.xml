@@ -3,7 +3,7 @@
 
 <mapper namespace="jp.xxxxx.shop_order_support.mapper.entity.UserMapper">
 
-	<resultMap id="userResult" type="jp.xxxxx.shop_order_support.entity.User">
+	<resultMap id="userResult" type="jp.xxxxx.shop_order_support.entity.UserEntity">
 		<id column="code" property="code" />
 		<result column="password" property="password" />
 		<result column="name" property="name" />
@@ -13,7 +13,7 @@
 		<association property="shop" resultMap="shopResult" columnPrefix="shop_"/>
 	</resultMap>
 
-	<resultMap id="shopResult" type="jp.xxxxx.shop_order_support.entity.Shop">
+	<resultMap id="shopResult" type="jp.xxxxx.shop_order_support.entity.ShopEntity">
 		<id column="code" property="code" />
 		<result column="name" property="name" />
 		<result column="enabled" property="enabled" />

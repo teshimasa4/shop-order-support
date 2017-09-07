@@ -1,16 +1,16 @@
-<script src="${pageContext.request.contextPath}/resources/app/js/common/header.js" /></script>
+<script src="${pageContext.request.contextPath}/resources/app/js/layout/header.js" /></script>
 
 <h2>
 	<a href="${pageContext.request.contextPath}/">Shop Order Support System</a>
 </h2>
 
 <ul id="navigation" class="slimmenu">
-	<li><a href="${pageContext.request.contextPath}/">HOME</a></li>
-	<li><a href="">SAMPLE</a></li>
-	<li><a href="">ABOUT</a></li>
+	<li><a href="${pageContext.request.contextPath}/">home</a></li>
+	<li><a href="${pageContext.request.contextPath}/order/">order</a></li>
+	<li><a href=""></a></li>
 	<li>
 		<form:form action="${pageContext.request.contextPath}/logout" method="post" id="logout">
-			<a href="javascript:logout()">logout</a>
+			<a id="logout">logout</a>
 		</form:form>
 	</li>
 </ul>
