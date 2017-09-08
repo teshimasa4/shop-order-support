@@ -7,20 +7,21 @@ var filesToCache = [
 
 	, '/shop-order-support/resources/jquery/js/jquery-3.2.1.min.js'
 
-	, '/shop-order-support/resources/jquery/css/slimmenu.min.css'
-	, '/shop-order-support/resources/jquery/js/jquery.slimmenu.min.js'
+	, '/shop-order-support/resources/jquery/css/drawer.min-3.2.2.css'
+	, '/shop-order-support/resources/jquery/js/iscroll-5.2.0.js'
+	, '/shop-order-support/resources/jquery/js/drawer.min-3.2.2.js'
 
 
 	, '/shop-order-support/resources/app/css/common/common.css'
-	, '/shop-order-support/resources/app/css/layout/layout.css'
-
-
 	, '/shop-order-support/resources/app/js/common/common.js'
+
+	, '/shop-order-support/resources/app/css/layout/layout.css'
+	, '/shop-order-support/resources/app/js/layout/layout.js'
 
 	, '/shop-order-support/resources/app/js/common/service-worker-registration.js'
 	, '/shop-order-support/resources/app/js/common/indexedDB-registration.js'
 
-	, '/shop-order-support/resources/app/js/layout/header.js'
+
 
 	, '/shop-order-support/resources/app/js/order/input.js'
 

@@ -12,7 +12,7 @@
 	}
 }
 
-p#user_nm {
+p.user_info {
 	text-align: right;
 }
 
