@@ -21,4 +21,7 @@
 
 <button id="save"><spring:message code="label.common.save" /></button>
 
+
+
+
 <input type="hidden" id="item_category_cd" value=""></input>

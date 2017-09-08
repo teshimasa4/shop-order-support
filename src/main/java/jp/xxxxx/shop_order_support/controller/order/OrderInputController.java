@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-@RequestMapping(value = "/order/input")
+@RequestMapping(value = "/order")
 public class OrderInputController {
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/input", method = RequestMethod.GET)
 	public String home() {
 		return "order/input";
 	}

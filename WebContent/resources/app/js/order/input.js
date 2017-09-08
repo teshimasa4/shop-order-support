@@ -2,7 +2,7 @@ $(function() {
 	'use strict';
 
 	var app = {
-			cacheLastUpdateTime : undefined
+			cacheLastUpdateTime: undefined
 	};
 
 	$('input#item_cd').blur(function(event) {
@@ -79,14 +79,16 @@ $(function() {
 		console.log('save');
 
 		var order = {
-			user_cd : $('#user_cd').val(),
-			order_date : new Date(),
-			shop_cd : $('#shop_cd').val(),
-			item_cd : $('#item_cd').val(),
-			item_nm : $('#item_nm').text(),
-			item_category_cd : $('#item_category_cd').val(),
-			item_category_nm : $('#item_category_nm').text(),
-			order_quantity : $('#order_quantity').val()
+			user_cd: $('#user_cd').val(),
+			order_date: new Date(),
+			shop_cd: $('#shop_cd').val(),
+			item_cd: $('#item_cd').val(),
+			item_nm: $('#item_nm').text(),
+			item_category_cd: $('#item_category_cd').val(),
+			item_category_nm: $('#item_category_nm').text(),
+			order_quantity: $('#order_quantity').val(),
+			registed: false,
+			regist_date: undefined
 		};
 
 		module.add(order);

@@ -44,7 +44,7 @@ module.add = function(order) {
 	var db = module.db;
 	var transaction = db.transaction([module.dbStoreName], "readwrite");
 	var store = transaction.objectStore(module.dbStoreName);
-	var request = store.put(order);
+	var request = store.add(order);
 
 	request.onsuccess = function () {
 		console.log('[indexedDB] add success');
