@@ -1,4 +1,4 @@
-package jp.xxxxx.shop_order_support.controller;
+package jp.xxxxx.shop_order_support.controller.order;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
