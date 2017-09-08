@@ -17,8 +17,13 @@
 
 	<!-- app -->
 	<link href="${pageContext.request.contextPath}/resources/app/css/common/common.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/resources/app/css/layout/layout.css" rel="stylesheet">
+
+
 	<script src="${pageContext.request.contextPath}/resources/app/js/common/common.js"></script>
+
 	<script src="${pageContext.request.contextPath}/resources/app/js/common/service-worker-registration.js" async></script>
+	<script src="${pageContext.request.contextPath}/resources/app/js/common/indexedDB-registration.js" async></script>
 
 	<c:set var="titleKey">
 		<tiles:insertAttribute name="title" ignore="true" />
@@ -31,7 +36,11 @@
 	<div data-role="page">
 		<div data-role="header">
 			<tiles:insertAttribute name="header" />
-			<h3><spring:message code="${titleKey}" /></h3>
+
+			<div>
+				<h3><spring:message code="${titleKey}" /></h3>
+				<p id="user_nm"><sec:authentication property="principal.user.name"/></p>
+			</div>
 		</div>
 
 		<div role="main" class="ui-content">
@@ -42,5 +51,8 @@
 			<tiles:insertAttribute name="footer" />
 		</div>
 	</div>
+
+	<input type="hidden" id="shop_cd" value="<sec:authentication property="principal.user.shop.code"/>"></input>
+	<input type="hidden" id="user_cd" value="<sec:authentication property="principal.user.code"/>"></input>
 </body>
 </html>

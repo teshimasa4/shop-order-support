@@ -6,7 +6,7 @@
 
 <ul id="navigation" class="slimmenu">
 	<li><a href="${pageContext.request.contextPath}/">home</a></li>
-	<li><a href="${pageContext.request.contextPath}/order/">order</a></li>
+	<li><a href="${pageContext.request.contextPath}/order/input/">order</a></li>
 	<li><a href=""></a></li>
 	<li>
 		<form:form action="${pageContext.request.contextPath}/logout" method="post" id="logout">

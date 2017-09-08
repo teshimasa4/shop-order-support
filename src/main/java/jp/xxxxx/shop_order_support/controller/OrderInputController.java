@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-@RequestMapping(value = "/order")
-public class OrderController {
+@RequestMapping(value = "/order/input")
+public class OrderInputController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
-		return "order/home";
+		return "order/input";
 	}
 }

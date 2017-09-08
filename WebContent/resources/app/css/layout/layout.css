@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+#menu {
+	display: block;
+}
+@media screen and (min-width: 768px) {
+	#menu {
+		display: block;
+	}
+	.slicknav_menu {
+		display: none;
+	}
+}
+
+p#user_nm {
+	text-align: right;
+}
+
+p.copyright {
+	text-align: center;
+}

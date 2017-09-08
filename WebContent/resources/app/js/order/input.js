@@ -2,10 +2,10 @@ $(function() {
 	'use strict';
 
 	var app = {
-			cacheLastUpdateTime: undefined
+			cacheLastUpdateTime : undefined
 	};
 
-	$('#item_cd').blur(function(event) {
+	$('input#item_cd').blur(function(event) {
 
 		var itemCd = $('#item_cd').val();
 
@@ -29,11 +29,11 @@ $(function() {
 				type:'GET',
 				dataType: 'json',
 				success: function(data) {
-					console.log('データ取得OK');
+					console.log('[Data] fetch OK');
 					app.updateItemByFetch(data);
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
-					console.log('データ取得NG');
+					console.log('[Data] fetch NG');
 				}
 			});
 		}
@@ -61,8 +61,35 @@ $(function() {
 
 	app.updateItem = function(data) {
 		console.log('updateItem');
-		$('#item_name').text(data.item_name);
-		$('#item_category_name').text(data.item_category_name);
+		$('#item_nm').text(data.item_nm);
+		$('#item_category_cd').val(data.item_category_cd);
+		$('#item_category_nm').text(data.item_category_nm);
 		$('#order_quantity').val(data.min_order_quantity);
 	};
+
+	app.clearItem = function() {
+		$('#item_cd').val('');
+		$('#item_nm').text('');
+		$('#item_category_cd').val('');
+		$('#item_category_nm').text('');
+		$('#order_quantity').val('');
+	};
+
+	$('button#save').click(function(event) {
+		console.log('save');
+
+		var order = {
+			user_cd : $('#user_cd').val(),
+			order_date : new Date(),
+			shop_cd : $('#shop_cd').val(),
+			item_cd : $('#item_cd').val(),
+			item_nm : $('#item_nm').text(),
+			item_category_cd : $('#item_category_cd').val(),
+			item_category_nm : $('#item_category_nm').text(),
+			order_quantity : $('#order_quantity').val()
+		};
+
+		module.add(order);
+		app.clearItem();
+	});
 });

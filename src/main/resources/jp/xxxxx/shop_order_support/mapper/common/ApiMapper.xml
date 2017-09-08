@@ -6,9 +6,9 @@
 	<resultMap id="itemResult" type="jp.xxxxx.shop_order_support.data.common.ItemData">
 		<result column="shop_cd" property="shopCd" />
 		<result column="item_cd" property="itemCd" />
-		<result column="item_name" property="itemName" />
+		<result column="item_nm" property="itemNm" />
 		<result column="item_category_cd" property="itemCategoryCd" />
-		<result column="item_category_name" property="itemCategoryName" />
+		<result column="item_category_nm" property="itemCategoryNm" />
 		<result column="date_specification" property="dateSpecification" />
 		<result column="min_order_quantity" property="minOrderQuantity" />
 		<result column="unit_selling_price" property="unitSellingPrice" />
@@ -20,9 +20,9 @@
 	<select id="findOneItem" resultMap="itemResult">
 		select si.shop_cd
 			, i.code as item_cd
-			, i.name as item_name
+			, i.name as item_nm
 			, i.item_category_cd
-			, ic.name as item_category_name
+			, ic.name as item_category_nm
 			, ic.date_specification
 			, i.min_order_quantity
 			, i.unit_selling_price
@@ -36,7 +36,7 @@
 		inner join m_item_category ic
 		on i.item_category_cd = ic.code
 		where i.enabled = true
-		and si.shop_cd = #{shop_code}
-		and si.item_cd = #{item_code}
+		and si.shop_cd = #{shop_cd}
+		and si.item_cd = #{item_cd}
 	</select>
 </mapper>

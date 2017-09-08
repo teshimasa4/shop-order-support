@@ -12,11 +12,17 @@ var filesToCache = [
 
 
 	, '/shop-order-support/resources/app/css/common/common.css'
+	, '/shop-order-support/resources/app/css/layout/layout.css'
+
+
 	, '/shop-order-support/resources/app/js/common/common.js'
+
 	, '/shop-order-support/resources/app/js/common/service-worker-registration.js'
+	, '/shop-order-support/resources/app/js/common/indexedDB-registration.js'
 
 	, '/shop-order-support/resources/app/js/layout/header.js'
-	, '/shop-order-support/resources/app/js/order/home.js'
+
+	, '/shop-order-support/resources/app/js/order/input.js'
 
 ];
 

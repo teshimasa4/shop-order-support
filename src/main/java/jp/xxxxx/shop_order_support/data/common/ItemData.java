@@ -21,14 +21,14 @@ public class ItemData implements Serializable {
 	@JsonProperty("item_cd")
 	private String itemCd;
 
-	@JsonProperty("item_name")
-	private String itemName;
+	@JsonProperty("item_nm")
+	private String itemNm;
 
 	@JsonProperty("item_category_cd")
 	private String itemCategoryCd;
 
-	@JsonProperty("item_category_name")
-	private String itemCategoryName;
+	@JsonProperty("item_category_nm")
+	private String itemCategoryNm;
 
 	@JsonProperty("date_specification")
 	private Boolean dateSpecification;
