@@ -60,7 +60,7 @@ self.addEventListener('fetch', function(e) {
 	} else if (e.request.url.indexOf('/logout') > -1) {
 		caches.delete(cacheName);
 		return fetch(e.request);
-	} else 	if (e.request.url.indexOf('/api/') > -1) {
+	} else if (e.request.url.indexOf('/api/') > -1) {
 		e.respondWith(
 				caches.open(dataCacheName).then(function(cache) {
 					return fetch(e.request).then(function(response) {
