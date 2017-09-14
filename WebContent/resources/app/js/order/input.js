@@ -87,6 +87,7 @@ $(function() {
 			item_category_cd: $('#item_category_cd').val(),
 			item_category_nm: $('#item_category_nm').text(),
 			order_quantity: $('#order_quantity').val(),
+			order_time: new Date(),
 			registed: false,
 			regist_date: undefined
 		};

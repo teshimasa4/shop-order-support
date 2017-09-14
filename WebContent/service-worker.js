@@ -3,9 +3,10 @@
 var cacheName = 'shop-order-support_0.0.1';
 var dataCacheName = 'shop-order-support_data_0.0.1';
 var filesToCache = [
-	'/shop-order-support/resources/bootstrap/css/bootstrap-3.3.7.min.css'
+	'/shop-order-support/resources/jquery/js/jquery-3.2.1.min.js'
 
-	, '/shop-order-support/resources/jquery/js/jquery-3.2.1.min.js'
+	, '/shop-order-support/resources/bootstrap/css/bootstrap-3.3.7.min.css'
+	, '/shop-order-support/resources/bootstrap/js/dropdown-3.3.7.js'
 
 	, '/shop-order-support/resources/jquery/css/drawer.min-3.2.2.css'
 	, '/shop-order-support/resources/jquery/js/iscroll-5.2.0.js'
@@ -24,7 +25,6 @@ var filesToCache = [
 
 
 	, '/shop-order-support/resources/app/js/order/input.js'
-
 ];
 
 self.addEventListener('install', function(e) {
