@@ -10,7 +10,7 @@ $(function() {
 		var itemCd = $('#item_cd').val();
 
 		if(itemCd) {
-			var url = '/shop-order-support/api/item?shop_cd=' + $('#shop_cd').val() + '&item_cd=' + itemCd;
+			var url = ROOT_URL + '/api/item?shop_cd=' + $('#shop_cd').val() + '&item_cd=' + itemCd;
 
 			if ('caches' in window) {
 				caches.match(url).then(function(response) {

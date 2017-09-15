@@ -13,6 +13,7 @@
 		<sec:intercept-url pattern="/logout" access="permitAll" />
 		<sec:intercept-url pattern="/resources/**" access="permitAll" />
 		<sec:intercept-url pattern="/service-worker.js" access="permitAll" />
+		<sec:intercept-url pattern="/manifest.json" access="permitAll" />
 		<sec:intercept-url pattern="/**" access="isAuthenticated()" />
 
 		<sec:form-login login-page='/login' default-target-url='/' />

@@ -6,15 +6,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-	<form name='f' action='${pageContext.request.contextPath}/login' method='POST'>
+	<form name="f" action="${pageContext.request.contextPath}/login" method="POST">
 		<table>
 			<tr>
 				<td>ユーザ:</td>
-				<td><input type='text' name='username' value='' /></td>
+				<td><input type="text" name="username" value="" /></td>
 			</tr>
 			<tr>
 				<td>パスワード:</td>
-				<td><input type='password' name='password' /></td>
+				<td><input type="password" name="password" /></td>
 			</tr>
 			<tr>
 				<td><input name="submit" type="submit" value="Login" /></td>
