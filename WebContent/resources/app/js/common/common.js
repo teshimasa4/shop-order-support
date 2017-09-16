@@ -1,3 +1,11 @@
 'use strict';
 
-var ROOT_URL='/shop-order-support';
+var app = {
+		constants: {
+			root_url: '/shop-order-support'
+		},
+		utils: {}
+};
+
+
+

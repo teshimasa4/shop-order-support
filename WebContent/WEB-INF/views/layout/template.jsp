@@ -4,6 +4,7 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="manifest" href="${pageContext.request.contextPath}/manifest.json">
 
 	<!-- jquery -->
 	<script src="${pageContext.request.contextPath}/resources/jquery/js/jquery-3.2.1.min.js"></script>
@@ -38,14 +39,15 @@
 </head>
 <body class="drawer drawer--left drawer--sidebar">
 
-
 	<button type="button" class="drawer-toggle drawer-hamburger">
 		<span class="sr-only">toggle navigation</span>
 		<span class="drawer-hamburger-icon"></span>
 	</button>
 	<nav class="drawer-nav" role="navigation">
 		<ul class="drawer-menu">
-			<li><a class="drawer-brand" href="${pageContext.request.contextPath}/">home</a></li>
+			<li>
+				<a class="drawer-brand" href="${pageContext.request.contextPath}/">home</a>
+			</li>
 
 			<li class="drawer-dropdown">
 				<a href="#" data-toggle="dropdown">order</a>

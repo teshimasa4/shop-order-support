@@ -1,31 +1,31 @@
 'use strict';
 
-var module = {
-  dbName : 'shop-order-suport-db',
-  dbVersion : 1.0,
-  db : null,
-  dbStoreName : 'order'
+var dbModule = {
+		name : 'shop-order-suport-db',
+		version : 1.0,
+		db : null,
+		storeName : 'order'
 };
 
 
-module.init = function() {
+dbModule.init = function() {
 	console.log('[indexedDB] init');
 	var indexedDB = window.indexedDB || window.mozIndexedDB || window.msIndexedDB;
 
 	if (indexedDB) {
 
-		var openRequest = indexedDB.open(module.dbName, module.dbVersion);
+		var openRequest = indexedDB.open(dbModule.name, dbModule.version);
 
 		openRequest.onupgradeneeded = function(event) {
 			console.log('[indexedDB] upgrade');
 
 			var db = event.target.result;
-			db.createObjectStore(module.dbStoreName, { autoIncrement: true});
+			db.createObjectStore(dbModule.storeName, { autoIncrement: true});
 		};
 
 		openRequest.onsuccess = function(event) {
 			console.log('[indexedDB] open success');
-			module.db = (event.target) ? event.target.result : event.result;
+			dbModule.db = (event.target) ? event.target.result : event.result;
 		};
 
 		openRequest.onerror = function(event){
@@ -37,13 +37,13 @@ module.init = function() {
 	}
 };
 
-module.add = function(order) {
+dbModule.add = function(order) {
 	console.log('[indexedDB] add');
 	console.log(order);
 
-	var db = module.db;
-	var transaction = db.transaction([module.dbStoreName], "readwrite");
-	var store = transaction.objectStore(module.dbStoreName);
+	var db = dbModule.db;
+	var transaction = db.transaction([dbModule.storeName], "readwrite");
+	var store = transaction.objectStore(dbModule.storeName);
 	var request = store.add(order);
 
 	request.onsuccess = function () {
@@ -56,5 +56,5 @@ module.add = function(order) {
 };
 
 (function() {
-	module.init();
+	dbModule.init();
 })();

@@ -1,3 +1,4 @@
+<script src="${pageContext.request.contextPath}/resources/app/js/order/common.js" async></script>
 <script src="${pageContext.request.contextPath}/resources/app/js/order/input.js" async></script>
 
 <table>

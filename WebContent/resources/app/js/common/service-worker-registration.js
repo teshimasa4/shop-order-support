@@ -1,9 +1,10 @@
+'use strict';
+
 (function() {
-	'use strict';
 
 	if ('serviceWorker' in navigator) {
 		navigator.serviceWorker
-			.register(ROOT_URL + '/service-worker.js')
+			.register(app.constants.root_url + '/service-worker.js')
 			.then(function() { console.log('Service Worker Registered');});
 	}
 
