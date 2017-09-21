@@ -1,4 +1,4 @@
-<h2>
+<h2 class="title">
 	<a href="${pageContext.request.contextPath}/">Shop Order Support System</a>
 </h2>
 

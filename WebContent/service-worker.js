@@ -1,30 +1,39 @@
 'use strict';
 
-var cacheName = 'shop-order-support_0.0.1';
-var dataCacheName = 'shop-order-support_data_0.0.1';
+var root = 'shop-order-support';
+var cacheName = root + '_0.0.1';
+var dataCacheName = root + '_data_0.0.1';
+
 var filesToCache = [
-	'/shop-order-support/resources/jquery/js/jquery-3.2.1.min.js'
+	'/' + root + '/manifest.json'
+//	, fetch('/' + root + '/', {credentials: 'include'})
 
-	, '/shop-order-support/resources/bootstrap/css/bootstrap-3.3.7.min.css'
-	, '/shop-order-support/resources/bootstrap/js/dropdown-3.3.7.js'
+	, '/' + root + '/resources/jquery/js/jquery-3.2.1.min.js'
 
-	, '/shop-order-support/resources/jquery/css/drawer.min-3.2.2.css'
-	, '/shop-order-support/resources/jquery/js/iscroll-5.2.0.js'
-	, '/shop-order-support/resources/jquery/js/drawer.min-3.2.2.js'
+	, '/' + root + '/resources/bootstrap/css/bootstrap-3.3.7.min.css'
+	, '/' + root + '/resources/bootstrap/js/dropdown-3.3.7.js'
 
+	, '/' + root + '/resources/jquery/css/drawer.min-3.2.2.css'
+	, '/' + root + '/resources/jquery/js/iscroll-5.2.0.js'
+	, '/' + root + '/resources/jquery/js/drawer.min-3.2.2.js'
 
-	, '/shop-order-support/resources/app/css/common/common.css'
-	, '/shop-order-support/resources/app/js/common/common.js'
-
-	, '/shop-order-support/resources/app/css/layout/layout.css'
-	, '/shop-order-support/resources/app/js/layout/layout.js'
-
-	, '/shop-order-support/resources/app/js/common/service-worker-registration.js'
-	, '/shop-order-support/resources/app/js/common/indexedDB-registration.js'
+	, '/' + root + '/resources/moment/js/moment-2.18.1.js'
 
 
 
-	, '/shop-order-support/resources/app/js/order/input.js'
+	, '/' + root + '/resources/app/css/common/common.css'
+	, '/' + root + '/resources/app/js/common/common.js'
+
+	, '/' + root + '/resources/app/css/layout/layout.css'
+	, '/' + root + '/resources/app/js/layout/layout.js'
+
+	, '/' + root + '/resources/app/js/common/service-worker-registration.js'
+	, '/' + root + '/resources/app/js/common/indexedDB-registration.js'
+
+
+	, '/' + root + '/resources/app/js/order/common.js'
+	, '/' + root + '/resources/app/js/order/input.js'
+	, '/' + root + '/resources/app/js/order/regist.js'
 ];
 
 self.addEventListener('install', function(e) {
@@ -89,7 +98,7 @@ self.addEventListener('fetch', function(e) {
 
 						var responseToCache = response.clone();
 						caches.open(cacheName).then(function(cache) {
-							cache.put(e.request.url, responseToCache);
+							cache.put(e.request, responseToCache);
 						});
 
 						console.log('[Service Worker] from fetch');

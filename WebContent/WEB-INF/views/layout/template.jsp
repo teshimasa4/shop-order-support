@@ -18,7 +18,8 @@
 	<script src="${pageContext.request.contextPath}/resources/jquery/js/iscroll-5.2.0.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/jquery/js/drawer.min-3.2.2.js"></script>
 
-
+	<!-- moment -->
+	<script src="${pageContext.request.contextPath}/resources/moment/js/moment-2.18.1.js"></script>
 
 	<!-- app -->
 	<link href="${pageContext.request.contextPath}/resources/app/css/common/common.css" rel="stylesheet">
@@ -28,7 +29,7 @@
 	<script src="${pageContext.request.contextPath}/resources/app/js/layout/layout.js"></script>
 
 	<script src="${pageContext.request.contextPath}/resources/app/js/common/service-worker-registration.js" async></script>
-	<script src="${pageContext.request.contextPath}/resources/app/js/common/indexedDB-registration.js" async></script>
+	<script src="${pageContext.request.contextPath}/resources/app/js/common/indexedDB-registration.js"></script>
 
 	<c:set var="titleKey">
 		<tiles:insertAttribute name="title" ignore="true" />
@@ -45,15 +46,16 @@
 	</button>
 	<nav class="drawer-nav" role="navigation">
 		<ul class="drawer-menu">
-			<li>
-				<a class="drawer-brand" href="${pageContext.request.contextPath}/">home</a>
-			</li>
+			<li class="drawer-brand">menu</li>
+			<li><a class="drawer-menu-item" href="${pageContext.request.contextPath}/">home</a></li>
 
 			<li class="drawer-dropdown">
-				<a href="#" data-toggle="dropdown">order</a>
+				<a class="drawer-menu-item" href="#" data-toggle="dropdown" role="button">order<span class="drawer-caret"></span></a>
 
 				<ul class="drawer-dropdown-menu">
-					<li><a class="drawer-menu-item" href="${pageContext.request.contextPath}/order/input/">input</a></li>
+					<li><a class="drawer-dropdown-menu-item" href="${pageContext.request.contextPath}/order/input/">input</a></li>
+					<li><a class="drawer-menu-item drawer-dropdown-menu-item" href="${pageContext.request.contextPath}/order/regist/">regist</a></li>
+					<li><a class="drawer-menu-item drawer-dropdown-menu-item" href="${pageContext.request.contextPath}/order/result/">result</a></li>
 				</ul>
 			</li>
 
@@ -65,7 +67,7 @@
 		</ul>
 	</nav>
 
-	<nav class="drawer-contents">
+	<nav class="drawer-contents" role="main">
 		<div data-role="page">
 			<div data-role="header">
 				<tiles:insertAttribute name="header" />

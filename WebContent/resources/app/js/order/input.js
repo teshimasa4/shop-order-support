@@ -57,16 +57,15 @@ app.order.input.events = {
 
 			var order = {
 					user_cd: $('#user_cd').val(),
-					order_date: new Date(),
+					order_date: app.utils.date.today(),
 					shop_cd: $('#shop_cd').val(),
 					item_cd: $('#item_cd').val(),
 					item_nm: $('#item_nm').text(),
 					item_category_cd: $('#item_category_cd').val(),
 					item_category_nm: $('#item_category_nm').text(),
 					order_quantity: $('#order_quantity').val(),
-					order_time: new Date(),
-					registed: false,
-					regist_date: undefined
+					input_time: new Date(),
+					regist_time: undefined
 				};
 
 			dbModule.add(order);
@@ -96,6 +95,8 @@ app.order.input.modules = {
 
 
 $(function() {
+
+	dbModule.init();
 
 	$('input#item_cd').blur(function(event) {
 		app.order.input.events.input_itemCd_blur(event);

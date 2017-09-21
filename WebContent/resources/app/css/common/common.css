@@ -4,3 +4,19 @@
 	margin: 0;
 	padding: 0;
 }
+
+.dropdown-backdrop {
+	position: static;
+}
+
+.drawer-menu-item, .drawer-dropdown-menu-item {
+    font-size: 1.2rem;
+}
+
+h2.title {
+	margin-top: 12px;
+}
+
+h2.title a {
+	margin-left: 35px;
+}
