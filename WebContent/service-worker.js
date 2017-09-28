@@ -80,6 +80,7 @@ self.addEventListener('fetch', function(e) {
 				)
 		);
 	} else {
+
 		e.respondWith(
 				caches.match(e.request).then(function(response) {
 
@@ -91,14 +92,26 @@ self.addEventListener('fetch', function(e) {
 					var fetchRequest = e.request.clone();
 					return fetch(fetchRequest).then(function(response) {
 
-						if (!response || response.status !== 200 || response.type !== 'basic') {
-							console.log('[Service Worker] NG response');
+						if (!response) {
+							console.log('[Service Worker] No response');
+							return response;
+						}
+
+						if (response.status !== 200 && response.status !== 201) {
+							console.log('[Service Worker] NG response.status: ' + response.status);
+							return response;
+						}
+
+						if (response.type !== 'basic') {
+							console.log('[Service Worker] NG response.type: ' + response.type);
 							return response;
 						}
 
 						var responseToCache = response.clone();
 						caches.open(cacheName).then(function(cache) {
-							cache.put(e.request, responseToCache);
+							if (e.request.method === 'GET') {
+								cache.put(e.request, responseToCache);
+							}
 						});
 
 						console.log('[Service Worker] from fetch');

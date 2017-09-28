@@ -36,6 +36,7 @@
 	</c:set>
 
 	<title><spring:message code="${titleKey}" /></title>
+	<sec:csrfMetaTags />
 
 </head>
 <body class="drawer drawer--left drawer--sidebar">

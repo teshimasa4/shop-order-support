@@ -53,16 +53,17 @@ dbModule.add = function(order) {
 	var request = store.add(order);
 
 	request.onsuccess = function () {
-		console.log('[indexedDB] add success');
+		console.log('[indexedDB] request success');
 	};
 
-	request.onerror = function () {
-		console.log('[indexedDB] add error');
+	request.onerror  = function(event) {
+		console.log('[indexedDB] request error');
+		console.log(request.error);
 	};
 };
 
 dbModule.getByOrderDate = function(userCd, shopCd, orderDate) {
-	console.log('[indexedDB] getByOrderDate(' + orderDate + '[' + userCd + '][' + shopCd + ']' );
+	console.log('[indexedDB] getByOrderDate(' + orderDate + ')[' + userCd + '][' + shopCd + ']' );
 	var defer = $.Deferred();
 
 	var transaction = dbModule.db.transaction([dbModule.storeName], 'readonly');
@@ -83,6 +84,40 @@ dbModule.getByOrderDate = function(userCd, shopCd, orderDate) {
 
 	request.onerror  = function(event) {
 		console.log(request.error);
+		defer.reject();
+	};
+
+	return defer.promise();
+};
+
+dbModule.updateRegistTime = function(id, time) {
+	console.log('[indexedDB] updateRegistTime(' + time + ')[' + id + ']' );
+	var defer = $.Deferred();
+
+	var transaction = dbModule.db.transaction([dbModule.storeName], 'readwrite');
+	var store = transaction.objectStore(dbModule.storeName);
+	var request = store.get(Number(id));
+
+	request.onsuccess = function(event) {
+		var data = request.result;
+		data.regist_time = time;
+
+		var requestUpdate = store.put(data);
+		requestUpdate.onsuccess = function(event) {
+			console.log('[indexedDB] requestUpdate success');
+			defer.resolve();
+		};
+		requestUpdate.onerror = function(event) {
+			console.log('[indexedDB] requestUpdate error');
+			console.log(requestUpdate.error);
+			defer.reject();
+		};
+	};
+
+	request.onerror  = function(event) {
+		console.log('[indexedDB] request error');
+		console.log(request.error);
+		defer.reject();
 	};
 
 	return defer.promise();

@@ -6,6 +6,7 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +25,7 @@ public class ApiController {
 	@Autowired
     private ApiService apiService;
 
-	@RequestMapping(value = "/item", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/item", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public String item(@RequestParam("shop_cd") String shopCd, @RequestParam("item_cd") String itemCd) throws JsonGenerationException, JsonMappingException, IOException {
 		return objectMapper.writeValueAsString(apiService.findOneItem(shopCd, itemCd));
 	}

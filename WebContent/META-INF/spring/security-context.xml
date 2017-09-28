@@ -20,6 +20,10 @@
 
 		<sec:logout logout-success-url="/"/>
 		<sec:remember-me />
+
+
+
+		<sec:csrf disabled="true"/>
 	</sec:http>
 
 	<sec:authentication-manager>
