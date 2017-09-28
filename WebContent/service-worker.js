@@ -11,6 +11,7 @@ var filesToCache = [
 	, '/' + root + '/resources/jquery/js/jquery-3.2.1.min.js'
 
 	, '/' + root + '/resources/bootstrap/css/bootstrap-3.3.7.min.css'
+	, '/' + root + '/resources/bootstrap/fonts/glyphicons-halflings-regular.woff2'
 	, '/' + root + '/resources/bootstrap/js/dropdown-3.3.7.js'
 
 	, '/' + root + '/resources/jquery/css/drawer.min-3.2.2.css'

@@ -17,6 +17,8 @@ h2.title {
 	margin-top: 12px;
 }
 
-h2.title a {
-	margin-left: 35px;
+@media screen and (max-width: 1023px){
+	h2.title a {
+		margin-left: 35px;
+	}
 }
