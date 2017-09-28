@@ -64,58 +64,63 @@ app.order.regist.modules = {
 			data.forEach(function(value, index, array) {
 
 				var sended = (value.regist_time === undefined ? false:true);
+				var style = app.order.regist.modules.style(sended);
 
 				$('#regist_data tbody > tr:last').after(
-						'<tr ' + createTrStyle() +'>'
-							+ '<td>' + createSendCheckbox() + '</td>'
+						'<tr ' + style.tr() +'>'
+							+ '<td>' + style.sendCheckbox() + '</td>'
 							+ '<td>' + value.item_nm + '</td>'
 							+ '<td>' + value.item_category_nm + '</td>'
-							+ '<td>' + createOrderQuantity() + '</td>'
+							+ '<td>' + style.orderQuantity(value.order_quantity) + '</td>'
 							+ '<td>' + app.utils.date.format(value.input_time, 'YYYY/MM/DD HH:mm:ss') + '</td>'
-							+ '<td>' + createTrashIcon() + '</td>'
+							+ '<td>' + style.trashIcon() + '</td>'
 							+ '<td>'
 								+ '<input type="hidden" id="item_cd" value="' + value.item_cd + '"></input>'
 								+ '<input type="hidden" id="idb_id" value="' + value.id + '">'
 							+ '</td>'
 						+ '</tr>'
 						);
+			});
 
-				function createTrStyle() {
+			$('button#delete').click(function(event) {
+				app.order.regist.events.button_delete_click($(this), event);
+			});
+		},
+
+		style: function(sended) {
+			return {
+				tr: function() {
 					if (sended) {
 						return 'class="info"';
 					} else {
 						return '';
 					}
-				}
+				},
 
-				function createSendCheckbox() {
+				sendCheckbox: function() {
 					if (sended) {
 						return '';
 					} else {
 						return '<input type="checkbox" id="send" checked="checked">';
 					}
-				}
+				},
 
-				function createOrderQuantity() {
+				orderQuantity: function(orderQuantity) {
 					if (sended) {
-						return value.order_quantity;
+						return orderQuantity;
 					} else {
-						return '<input type="number" id="order_quantity" value="' + value.order_quantity + '"></input>';
+						return '<input type="number" id="order_quantity" value="' + orderQuantity + '"></input>';
 					}
-				}
+				},
 
-				function createTrashIcon() {
+				trashIcon() {
 					if (sended) {
 						return '';
 					} else {
 						return '<button id="delete" class="btn btn-link"><span class="glyphicon glyphicon-trash"></span></button>';
 					}
 				}
-			});
-
-			$('button#delete').click(function(event) {
-				app.order.regist.events.button_delete_click($(this), event);
-			});
+			};
 		},
 
 		regist: function(param) {
