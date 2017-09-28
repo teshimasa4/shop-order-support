@@ -5,7 +5,7 @@
 	<tbody>
 		<tr>
 			<td><spring:message code="label.common.item_cd" /></td>
-			<td><input type='text' id='item_cd' value='' /></td>
+			<td><input type='number' id='item_cd' value='' /></td>
 		</tr>
 		<tr class="info">
 			<td><spring:message code="label.common.item_nm" /></td>
@@ -17,7 +17,7 @@
 		</tr>
 		<tr>
 			<td><spring:message code="label.order.quantity" /></td>
-			<td><input type='text' id='order_quantity' value='' class="number" /></td>
+			<td><input type='number' id='order_quantity' value='' class="number" /></td>
 		</tr>
 	</tbody>
 </table>

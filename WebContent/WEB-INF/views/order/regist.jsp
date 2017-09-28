@@ -4,11 +4,12 @@
 <table id="regist_data" class="table table-striped">
 	<thead>
 		<tr>
-			<th></th>
+			<th>#</th>
 			<th><spring:message code="label.common.item_nm" /></th>
 			<th><spring:message code="label.common.item_category" /></th>
 			<th><spring:message code="label.order.quantity" /></th>
 			<th><spring:message code="label.order.input.time" /></th>
+			<th></th>
 			<th></th>
 		</tr>
 	</thead>

@@ -11,13 +11,13 @@ var dbModule = {
 dbModule.init = function() {
 	console.log('[indexedDB] init');
 	var defer = $.Deferred();
-	var indexedDB = window.indexedDB || window.mozIndexedDB || window.msIndexedDB;
 
+	var indexedDB = window.indexedDB || window.mozIndexedDB || window.msIndexedDB;
 	if (indexedDB) {
 
-		var openRequest = indexedDB.open(dbModule.name, dbModule.version);
+		var request = indexedDB.open(dbModule.name, dbModule.version);
 
-		openRequest.onupgradeneeded = function(event) {
+		request.onupgradeneeded = function(event) {
 			console.log('[indexedDB] upgrade');
 
 			var db = event.target.result;
@@ -25,13 +25,13 @@ dbModule.init = function() {
 			store.createIndex('order_date', ['user_cd', 'shop_cd', 'order_date'], { unique: false });
 		};
 
-		openRequest.onsuccess = function(event) {
+		request.onsuccess = function(event) {
 			console.log('[indexedDB] open success');
 			dbModule.db = (event.target) ? event.target.result : event.result;
 			defer.resolve();
 		};
 
-		openRequest.onerror = function(event){
+		request.onerror = function(event){
 			console.log('[indexedDB] open error');
 			defer.reject();
 		}
@@ -47,23 +47,28 @@ dbModule.init = function() {
 dbModule.add = function(order) {
 	console.log('[indexedDB] add');
 	console.log(order);
+	var defer = $.Deferred();
 
 	var transaction = dbModule.db.transaction([dbModule.storeName], 'readwrite');
 	var store = transaction.objectStore(dbModule.storeName);
 	var request = store.add(order);
 
 	request.onsuccess = function () {
-		console.log('[indexedDB] request success');
+		console.log('[indexedDB] add success');
+		defer.resolve();
 	};
 
 	request.onerror  = function(event) {
-		console.log('[indexedDB] request error');
+		console.log('[indexedDB] add error');
 		console.log(request.error);
+		defer.reject();
 	};
+
+	return defer.promise();
 };
 
 dbModule.getByOrderDate = function(userCd, shopCd, orderDate) {
-	console.log('[indexedDB] getByOrderDate(' + orderDate + ')[' + userCd + '][' + shopCd + ']' );
+	console.log('[indexedDB] getByOrderDate(' + orderDate + ')[' + userCd + '][' + shopCd + ']');
 	var defer = $.Deferred();
 
 	var transaction = dbModule.db.transaction([dbModule.storeName], 'readonly');
@@ -91,7 +96,7 @@ dbModule.getByOrderDate = function(userCd, shopCd, orderDate) {
 };
 
 dbModule.updateRegistTime = function(id, time) {
-	console.log('[indexedDB] updateRegistTime(' + time + ')[' + id + ']' );
+	console.log('[indexedDB] updateRegistTime(' + time + ')[' + id + ']');
 	var defer = $.Deferred();
 
 	var transaction = dbModule.db.transaction([dbModule.storeName], 'readwrite');
@@ -99,23 +104,46 @@ dbModule.updateRegistTime = function(id, time) {
 	var request = store.get(Number(id));
 
 	request.onsuccess = function(event) {
+		console.log('[indexedDB] get success');
 		var data = request.result;
 		data.regist_time = time;
 
 		var requestUpdate = store.put(data);
 		requestUpdate.onsuccess = function(event) {
-			console.log('[indexedDB] requestUpdate success');
+			console.log('[indexedDB] update success');
 			defer.resolve();
 		};
 		requestUpdate.onerror = function(event) {
-			console.log('[indexedDB] requestUpdate error');
+			console.log('[indexedDB] update error');
 			console.log(requestUpdate.error);
 			defer.reject();
 		};
 	};
 
 	request.onerror  = function(event) {
-		console.log('[indexedDB] request error');
+		console.log('[indexedDB] get error');
+		console.log(request.error);
+		defer.reject();
+	};
+
+	return defer.promise();
+};
+
+dbModule.delete = function(id) {
+	console.log('[indexedDB] delete(' + id + ')');
+	var defer = $.Deferred();
+
+	var transaction = dbModule.db.transaction([dbModule.storeName], 'readwrite');
+	var store = transaction.objectStore(dbModule.storeName);
+	var request = store.delete(Number(id));
+
+	request.onsuccess = function(event) {
+		console.log('[indexedDB] delete success');
+		defer.resolve();
+	};
+
+	request.onerror  = function(event) {
+		console.log('[indexedDB] delete error');
 		console.log(request.error);
 		defer.reject();
 	};

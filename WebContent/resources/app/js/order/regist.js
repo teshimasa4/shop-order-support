@@ -39,7 +39,21 @@ app.order.regist.events = {
 				}
 			});
 
-			app.order.regist.modules.regist(param);
+			if (param.length > 0) {
+				app.order.regist.modules.regist(param);
+			} else {
+				console.log('no selected');
+			}
+
+		},
+
+		button_delete_click: function(element, event) {
+			console.log('[Event] button delete click');
+
+			var idb_id = element.parents('tr').find('#idb_id').val();
+			app.order.regist.modules.delete(idb_id);
+
+			element.parents('tr').fadeOut(500, function() {$(this).remove();});
 		}
 };
 
@@ -49,42 +63,58 @@ app.order.regist.modules = {
 
 			data.forEach(function(value, index, array) {
 
-				var sended = (value.regist_time === undefined ? true:false);
+				var sended = (value.regist_time === undefined ? false:true);
 
 				$('#regist_data tbody > tr:last').after(
 						'<tr ' + createTrStyle() +'>'
 							+ '<td>' + createSendCheckbox() + '</td>'
-							+ '<td>' + value.item_nm + '<input type="hidden" id="item_cd" value="' + value.item_cd + '"></input></td>'
+							+ '<td>' + value.item_nm + '</td>'
 							+ '<td>' + value.item_category_nm + '</td>'
 							+ '<td>' + createOrderQuantity() + '</td>'
 							+ '<td>' + app.utils.date.format(value.input_time, 'YYYY/MM/DD HH:mm:ss') + '</td>'
-							+ '<td><input type="hidden" id="idb_id" value="' + value.id + '"></td>'
+							+ '<td>' + createTrashIcon() + '</td>'
+							+ '<td>'
+								+ '<input type="hidden" id="item_cd" value="' + value.item_cd + '"></input>'
+								+ '<input type="hidden" id="idb_id" value="' + value.id + '">'
+							+ '</td>'
 						+ '</tr>'
 						);
 
 				function createTrStyle() {
 					if (sended) {
-						return '';
-					} else {
 						return 'class="info"';
+					} else {
+						return '';
 					}
 				}
 
 				function createSendCheckbox() {
 					if (sended) {
-						return '<input type="checkbox" id="send" checked="checked">';
-					} else {
 						return '';
+					} else {
+						return '<input type="checkbox" id="send" checked="checked">';
 					}
 				}
 
 				function createOrderQuantity() {
 					if (sended) {
-						return '<input type="text" id="order_quantity" value="' + value.order_quantity + '"></input>';
-					} else {
 						return value.order_quantity;
+					} else {
+						return '<input type="number" id="order_quantity" value="' + value.order_quantity + '"></input>';
 					}
 				}
+
+				function createTrashIcon() {
+					if (sended) {
+						return '';
+					} else {
+						return '<button id="delete" class="btn btn-link"><span class="glyphicon glyphicon-trash"></span></button>';
+					}
+				}
+			});
+
+			$('button#delete').click(function(event) {
+				app.order.regist.events.button_delete_click($(this), event);
 			});
 		},
 
@@ -119,7 +149,13 @@ app.order.regist.modules = {
 				dbModule.updateRegistTime(value.idb_key, nowTime);
 			});
 
-			location.reload();
+			$('table#regist_data tbody tr:not(:first)').remove();
+			app.order.regist.events.document_ready();
+		},
+
+		delete: function(id) {
+			console.log('[Module] delete(' + id + ')');
+			dbModule.delete(id);
 		}
 };
 
