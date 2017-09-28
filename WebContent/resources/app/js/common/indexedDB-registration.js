@@ -95,7 +95,7 @@ dbModule.getByOrderDate = function(userCd, shopCd, orderDate) {
 	return defer.promise();
 };
 
-dbModule.updateRegistTime = function(id, time) {
+dbModule.updateRegistTime = function(id, order_quantity, time) {
 	console.log('[indexedDB] updateRegistTime(' + time + ')[' + id + ']');
 	var defer = $.Deferred();
 
@@ -107,6 +107,11 @@ dbModule.updateRegistTime = function(id, time) {
 		console.log('[indexedDB] get success');
 		var data = request.result;
 		data.regist_time = time;
+
+		if (data.order_quantity !== order_quantity) {
+			data.order_quantity = order_quantity;
+			data.input_time = time;
+		}
 
 		var requestUpdate = store.put(data);
 		requestUpdate.onsuccess = function(event) {

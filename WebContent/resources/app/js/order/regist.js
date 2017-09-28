@@ -151,7 +151,7 @@ app.order.regist.modules = {
 
 			var nowTime = new Date();
 			param.forEach(function(value, index, array) {
-				dbModule.updateRegistTime(value.idb_key, nowTime);
+				dbModule.updateRegistTime(value.idb_key, value.order_quantity, nowTime);
 			});
 
 			$('table#regist_data tbody tr:not(:first)').remove();
