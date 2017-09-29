@@ -95,23 +95,21 @@ dbModule.getByOrderDate = function(userCd, shopCd, orderDate) {
 	return defer.promise();
 };
 
-dbModule.updateRegistTime = function(id, order_quantity, time) {
-	console.log('[indexedDB] updateRegistTime(' + time + ')[' + id + ']');
+dbModule.updateForRegist = function(registData) {
+	console.log('[indexedDB] updateRegistTime');
+	console.log(registData);
 	var defer = $.Deferred();
 
 	var transaction = dbModule.db.transaction([dbModule.storeName], 'readwrite');
 	var store = transaction.objectStore(dbModule.storeName);
-	var request = store.get(Number(id));
+	var request = store.get(Number(registData.idb_id));
 
 	request.onsuccess = function(event) {
 		console.log('[indexedDB] get success');
 		var data = request.result;
-		data.regist_time = time;
 
-		if (data.order_quantity !== order_quantity) {
-			data.order_quantity = order_quantity;
-			data.input_time = time;
-		}
+		data.regist_order_quantity = registData.regist_order_quantity;
+		data.regist_time = registData.regist_time;
 
 		var requestUpdate = store.put(data);
 		requestUpdate.onsuccess = function(event) {

@@ -26,14 +26,24 @@ app.order.regist.events = {
 			console.log('[Event] button regist click');
 
 			var param = [];
+			var nowTime = new Date();
+
 			$.each($('table#regist_data tbody tr:not(:first, .info)'), function() {
 				if($(this).find('#send:checked').val()) {
 					var order = {
 							user_cd: $('#user_cd').val(),
 							shop_cd: $('#shop_cd').val(),
+							order_date: $(this).find('#order_date').val(),
+
 							item_cd: $(this).find('#item_cd').val(),
-							order_quantity: $(this).find('#order_quantity').val(),
-							idb_key: $(this).find('#idb_id').val()
+
+							input_order_quantity: $(this).find('#input_order_quantity').val(),
+							input_time: $(this).find('#input_time').val(),
+
+							regist_order_quantity: $(this).find('#regist_order_quantity').val(),
+							regist_time: nowTime,
+
+							idb_id: $(this).find('#idb_id').val()
 					};
 					param.push(order);
 				}
@@ -71,11 +81,14 @@ app.order.regist.modules = {
 							+ '<td>' + style.sendCheckbox() + '</td>'
 							+ '<td>' + value.item_nm + '</td>'
 							+ '<td>' + value.item_category_nm + '</td>'
-							+ '<td>' + style.orderQuantity(value.order_quantity) + '</td>'
+							+ '<td>' + style.orderQuantity(value.input_order_quantity, value.regist_order_quantity) + '</td>'
 							+ '<td>' + app.utils.date.format(value.input_time, 'YYYY/MM/DD HH:mm:ss') + '</td>'
 							+ '<td>' + style.trashIcon() + '</td>'
 							+ '<td>'
+								+ '<input type="hidden" id="order_date" value="' + value.order_date + '">'
 								+ '<input type="hidden" id="item_cd" value="' + value.item_cd + '"></input>'
+								+ '<input type="hidden" id="input_order_quantity" value="' + value.input_order_quantity + '">'
+								+ '<input type="hidden" id="input_time" value="' + value.input_time + '">'
 								+ '<input type="hidden" id="idb_id" value="' + value.id + '">'
 							+ '</td>'
 						+ '</tr>'
@@ -105,11 +118,11 @@ app.order.regist.modules = {
 					}
 				},
 
-				orderQuantity: function(orderQuantity) {
+				orderQuantity: function(input_order_quantity, regist_order_quantity) {
 					if (sended) {
-						return orderQuantity;
+						return regist_order_quantity;
 					} else {
-						return '<input type="number" id="order_quantity" value="' + orderQuantity + '"></input>';
+						return '<input type="number" id="regist_order_quantity" value="' + input_order_quantity + '"></input>';
 					}
 				},
 
@@ -149,9 +162,13 @@ app.order.regist.modules = {
 		update: function(param) {
 			console.log('[Module] update');
 
-			var nowTime = new Date();
 			param.forEach(function(value, index, array) {
-				dbModule.updateRegistTime(value.idb_key, value.order_quantity, nowTime);
+				var registData = {
+						idb_id: value.idb_id,
+						regist_order_quantity: value.regist_order_quantity,
+						regist_time: value.regist_time
+				}
+				dbModule.updateForRegist(registData);
 			});
 
 			$('table#regist_data tbody tr:not(:first)').remove();

@@ -63,8 +63,9 @@ app.order.input.events = {
 					item_nm: $('#item_nm').text(),
 					item_category_cd: $('#item_category_cd').val(),
 					item_category_nm: $('#item_category_nm').text(),
-					order_quantity: $('#order_quantity').val(),
+					input_order_quantity: $('#order_quantity').val(),
 					input_time: new Date(),
+					regist_order_quantity: undefined,
 					regist_time: undefined
 				};
 
