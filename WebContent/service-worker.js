@@ -6,7 +6,6 @@ var dataCacheName = root + '_data_0.0.1';
 
 var filesToCache = [
 	'/' + root + '/manifest.json'
-//	, fetch('/' + root + '/', {credentials: 'include'})
 
 	, '/' + root + '/resources/jquery/js/jquery-3.2.1.min.js'
 
@@ -31,6 +30,8 @@ var filesToCache = [
 	, '/' + root + '/resources/app/js/common/service-worker-registration.js'
 	, '/' + root + '/resources/app/js/common/indexedDB-registration.js'
 
+
+	, '/' + root + '/resources/app/js/home/home.js'
 
 	, '/' + root + '/resources/app/js/order/common.js'
 	, '/' + root + '/resources/app/js/order/input.js'
@@ -66,10 +67,10 @@ self.addEventListener('fetch', function(e) {
 	console.log('[Service Worker] Fetch', e.request.url);
 
 	if (e.request.url.indexOf('/login') > -1) {
-		return fetch(e.request);
+		return;
 	} else if (e.request.url.indexOf('/logout') > -1) {
 		caches.delete(cacheName);
-		return fetch(e.request);
+		return;
 	} else if (e.request.url.indexOf('/api/') > -1) {
 		e.respondWith(
 				caches.open(dataCacheName).then(function(cache) {
@@ -82,44 +83,46 @@ self.addEventListener('fetch', function(e) {
 		);
 	} else {
 
-		e.respondWith(
-				caches.match(e.request).then(function(response) {
+		if (e.request.method === 'GET') {
+			e.respondWith(
+					caches.match(e.request).then(function(response) {
 
-					if (response) {
-						console.log('[Service Worker] from cache');
-						return response;
-			        }
-
-					var fetchRequest = e.request.clone();
-					return fetch(fetchRequest).then(function(response) {
-
-						if (!response) {
-							console.log('[Service Worker] No response');
+						if (response) {
+							console.log('[Service Worker] from cache');
 							return response;
-						}
+				        }
 
-						if (response.status !== 200 && response.status !== 201) {
-							console.log('[Service Worker] NG response.status: ' + response.status);
-							return response;
-						}
+						var fetchRequest = e.request.clone();
+						return fetch(fetchRequest).then(function(response) {
 
-						if (response.type !== 'basic') {
-							console.log('[Service Worker] NG response.type: ' + response.type);
-							return response;
-						}
-
-						var responseToCache = response.clone();
-						caches.open(cacheName).then(function(cache) {
-							if (e.request.method === 'GET') {
-								cache.put(e.request, responseToCache);
+							if (!response) {
+								console.log('[Service Worker] No response');
+								return response;
 							}
+
+							if (response.status !== 200 && response.status !== 201) {
+								console.log('[Service Worker] NG response.status: ' + response.status);
+								return response;
+							}
+
+							if (response.type !== 'basic') {
+								console.log('[Service Worker] NG response.type: ' + response.type);
+								return response;
+							}
+
+							var responseToCache = response.clone();
+							caches.open(cacheName).then(function(cache) {
+								cache.put(e.request, responseToCache);
+							});
+
+							console.log('[Service Worker] from fetch');
+							return response;
 						});
 
-						console.log('[Service Worker] from fetch');
-						return response;
-					});
-
-				})
-		);
+					})
+			);
+		} else {
+			return;
+		}
 	}
 });
